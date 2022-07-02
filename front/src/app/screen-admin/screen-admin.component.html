@@ -1,0 +1,94 @@
+
+<div class="container">
+
+  <h1> Todos os leads cadastrados: </h1>
+
+  <div>
+    <form [formGroup]="formSearch" (ngSubmit)="submit()">
+
+      <div class="form-group col-md-6">
+        <label for="type">
+          Selecione um tipo de pesquisa
+        </label>
+        <select formControlName="type" class="form-control">
+          <option [ngValue]="null" disabled> Selecione um tipo de pesquisa </option>
+          <option *ngFor="let type of searchTypes" [ngValue]="type.id">{{type.type}}</option>
+        </select>
+      </div>
+
+      <ng-container *ngIf="formSearch.value.type === 'sexo'">
+        <div class="form-group col-md-6">
+          <label> Selecione um sexo para pesquisar: </label>
+          <select formControlName="value" class="form-control">
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+          </select>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="formSearch.value.type === 'cidade'">
+        <div class="form-group col-md-6">
+          <label> Selecione a cidade que deseja pesquisar: </label>
+          <select formControlName="value" class="form-control">
+            <option value="franca">Franca</option>
+            <option value="spaulo">São Paulo</option>
+            <option value="ribeirao">Ribeirão Preto </option>
+            <option value="batatais">Batatais </option>
+          </select>
+        </div>
+      </ng-container>
+
+      <button type="submit" class="btn btn-success">Enviar</button>
+      <button class="btn btn-secondary" style="float: right;" (click)="clear()" type="button">Limpar
+        Pesquisa</button>
+    </form>
+  </div>
+
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"> Nome </th>
+        <th scope="col"> E-mail </th>
+        <th scope="col"> Cidade </th>
+        <th scope="col"> Genero </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of dataSource | paginate: {
+        itemsPerPage: size,
+        currentPage: page,
+        totalItems: totalItems
+      }
+        ">
+        <td>{{row.username}} </td>
+        <td>{{row.email}}</td>
+        <td>{{row.city}}</td>
+        <td>{{row.gender}}</td>
+      </tr>
+    </tbody>
+    <pagination-controls class="pagi" (pageChange)="nextAndReturnPage((page = $event))" previousLabel="Anterior"
+      nextLabel="Próximo"></pagination-controls>
+  </table>
+
+  <header class="jumbotron">
+    <h2> importe uma lista de leads xmls </h2>
+    <input
+       type="file"
+       class="custom-file"
+       id="customFile"
+       placeholder="Selecione o XML"
+
+       />
+       <button class="'btn btn-info" >
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none" id="loading"></span>
+        Upload
+       </button>
+  </header>
+
+  <header class="jumbotron">
+    <h2>Exportação</h2>
+    <button class="btn btn-info" (click)="exportFile()" >Exportar Leads Registrados</button>
+  </header>
+</div>

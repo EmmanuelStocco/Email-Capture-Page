@@ -1,0 +1,78 @@
+<div class="container">
+  <h1> Bem vindo! </h1>
+  <h2 *ngIf="!leadCadast" style="align-items: center; margin-left: 200px;"> Se cadastre para concorrer a um carro novo! </h2>
+  <h2 *ngIf="leadCadast" style="align-items: center; margin-left: 200px;"> Parabéns! </h2>
+
+  <!-- <div style="margin-bottom: 10px">
+  <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2018/11/capa-comparativos-2-01-e1541859116970.jpg?quality=70&strip=info"
+    style="position: absolute; width: 1000px; height: 500px; margin-top: 20px;"/>
+  </div> -->
+
+  <div class="card card-container" style="margin-bottom: 20px;">
+    <form *ngIf="!leadCadast" name="form" (ngSubmit)="f.form.valid && submit()" #f="ngForm" novalidate>
+
+      <div class="d-flex">
+        <div class="form-group col-md-6">
+          <label for="Nome"> Nome </label>
+          <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required
+            #username="ngModel" />
+            <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
+              O username é obrigatório
+            </div>
+         </div>
+
+         <div class="form-group col-md-6">
+          <label for="Nome">E-mail</label>
+          <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required
+                      #email="ngModel" />
+                  <div class="alert alert-danger" role="alert" *ngIf="email.errors && f.submitted">
+                      O email é obrigatório
+                  </div>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <div class="form-group col-md-6">
+          <label for="Nome"> Cidade </label>
+          <input type="text" class="form-control" name="city" [(ngModel)]="form.city" required
+          #username="ngModel" />
+          <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
+            O campo cidade é obrigatório
+          </div>
+        </div>
+
+
+      <div class="d-flex">
+        <div class="form-group col-md-6">
+          <label for="Nome"> Genero </label>
+          <input type="text" class="form-control" name="gender" [(ngModel)]="form.gender" required
+          #gender="ngModel" />
+          <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
+            O campo genero é obrigatório
+          </div>
+        </div>
+
+      </div>
+      </div>
+
+
+
+      <div class="form group d-flex justify-content-center">
+        <button class="btn btn-primary btn-block col-6" style="margin-bottom: 10px;">
+          Cadastrar
+        </button>
+      </div>
+    </form>
+
+
+
+  </div>
+
+  <div *ngIf="leadCadast" class="alert alert-success" role="alert" style="margin-top: 10px;">
+    <h4 class="alert-heading">Muito bem!</h4>
+    <p>Agora é só aguardar! em breve nossa equipe te adicionará em nossa lista de espera!</p>
+    <hr>
+    <p class="mb-0">Aguarda de 3 a 5 dias uteis para o retorno.</p>
+  </div>
+
+</div>
