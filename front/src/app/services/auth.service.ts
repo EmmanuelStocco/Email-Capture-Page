@@ -35,15 +35,19 @@ export class AuthService {
   };
 
   getMyUserData(id: string, token: string): Observable<any> {
-    const header = new HttpHeaders().append('x-acess-token', token)
+    const header = new HttpHeaders().append('x-acess-token', token);
     return this.http.get(API_URL + id, {
       headers: header
     });
   };
 
-  myProfileDataEdit(id: string, token: string): Observable<any> {
-    const header = new HttpHeaders().append('x-acess-token', token)
-    return this.http.put(API_URL + 'edit/' + id, {
+  myProfileDataEdit(userDataEdit: any, token: string, id: any): Observable<any> {
+    console.log('userDataEdit')
+    console.log(userDataEdit)
+
+    console.log('userDataEdit')
+    const header = new HttpHeaders().append('x-acess-token', token);
+    return this.http.put(API_URL + 'edit/' + id, userDataEdit, {
       headers: header
     });
   };

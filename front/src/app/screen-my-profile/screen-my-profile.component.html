@@ -43,7 +43,9 @@
     <div class="form-group col-md-6">
       <label for="Password">Senha</label>
       <input type="password" class="form-control" name="password" [(ngModel)]="myData.password" required
-                  #password="ngModel" />
+                  #password="ngModel"
+                   minlength="6"
+                  />
               <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
                   O campo senha é obrigatório
               </div>
@@ -63,6 +65,14 @@
           <button class="btn btn-primary btn-block col-6">
             Enviar alterações
           </button>
+  </div>
+
+
+  <div *ngIf="dataForEdit" class="alert alert-success" role="alert" style="margin-top: 10px;">
+    <h4 class="alert-heading">Muito bem!</h4>
+    <p>Agora é só aguardar! em breve nossa equipe te adicionará em nossa lista de espera!</p>
+    <hr>
+    <p class="mb-0">Aguarda de 3 a 5 dias uteis para o retorno.</p>
   </div>
 </form>
 </div>

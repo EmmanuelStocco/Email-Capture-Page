@@ -1,6 +1,6 @@
 <div class="container">
   <h1> Bem vindo! </h1>
-  <h2 *ngIf="!leadCadast" style="align-items: center; margin-left: 200px;"> Se cadastre para concorrer a um carro novo! </h2>
+  <h2 *ngIf="!leadCadast" style="align-items: center; margin-left: 200px;"> Deixe seu email para trabalhar conosco! </h2>
   <h2 *ngIf="leadCadast" style="align-items: center; margin-left: 200px;"> Parabéns! </h2>
 
   <!-- <div style="margin-bottom: 10px">
@@ -32,27 +32,30 @@
       </div>
 
       <div class="d-flex">
+
         <div class="form-group col-md-6">
           <label for="Nome"> Cidade </label>
-          <input type="text" class="form-control" name="city" [(ngModel)]="form.city" required
-          #username="ngModel" />
+          <select class="form-control" name="city" [(ngModel)]="form.city" required #city="ngModel">
+            <option [ngValue]="null" disabled>Selecione...</option>
+            <option *ngFor="let city of searchTypesCity" [ngValue]="city.id">{{city.type}}</option>
+          </select>
+          <!-- <input type="text" class="form-control" name="city" [(ngModel)]="form.city" required
+          #username="ngModel" /> -->
           <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
             O campo cidade é obrigatório
           </div>
         </div>
 
-
-      <div class="d-flex">
-        <div class="form-group col-md-6">
-          <label for="Nome"> Genero </label>
-          <input type="text" class="form-control" name="gender" [(ngModel)]="form.gender" required
-          #gender="ngModel" />
-          <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
-            O campo genero é obrigatório
+          <div class="form-group col-md-6">
+            <label for="Genero"> Genero </label>
+            <select class="form-control" name="gender" [(ngModel)]="form.gender" required #gender="ngModel">
+              <option [ngValue]="null" disabled>Selecione ...</option>
+              <option *ngFor="let gender of searchTypesGender" [ngValue]="gender.id">{{gender.type}}</option>
+            </select>
+            <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
+              O campo genero é obrigatório
+            </div>
           </div>
-        </div>
-
-      </div>
       </div>
 
 
@@ -63,9 +66,6 @@
         </button>
       </div>
     </form>
-
-
-
   </div>
 
   <div *ngIf="leadCadast" class="alert alert-success" role="alert" style="margin-top: 10px;">

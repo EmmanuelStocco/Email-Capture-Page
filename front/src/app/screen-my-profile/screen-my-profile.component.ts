@@ -24,6 +24,8 @@ export class ScreenMyProfileComponent implements OnInit {
   size: number = 5;
   totalItems: number = 0;
 
+  dataForEdit: boolean = false
+
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
@@ -31,7 +33,7 @@ export class ScreenMyProfileComponent implements OnInit {
     this.id = this.tokenStorage.getUser().id
     this.token = this.tokenStorage.getUser().accessToken
     this.authService.getMyUserData(this.id, this.token).subscribe(data => {
-      console.log(data)
+      //console.log(data)
       this.myData.email = data.email,
       this.myData.password = data.password,
       this.myData.username = data.username,
@@ -48,11 +50,17 @@ export class ScreenMyProfileComponent implements OnInit {
   };
 
   submit(){
-    const id = this.tokenStorage.getUser().id
-    const token = this.tokenStorage.getUser().accessToken
-    this.authService.myProfileDataEdit(id, token).subscribe(data => {
-      console.log(data)
+    this.authService.myProfileDataEdit(this.myData, this.token, this.id).subscribe(data => {
+      this.myData.email = data.email,
+      this.myData.password = data.password,
+      this.myData.username = data.username,
+      this.myData.createdAt = data.createdAt
+
+      this.dataForEdit = true;
     })
+    setTimeout(()=> {
+      this.reloadPage()
+    }, 1000 )
   };
 
 }

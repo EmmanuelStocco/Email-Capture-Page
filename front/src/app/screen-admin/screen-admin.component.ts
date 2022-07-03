@@ -43,6 +43,7 @@ export class ScreenAdminComponent implements OnInit {
   submit() {
     console.log(this.formSearch.value);
     this.leadService.getLeadByFilter(this.formSearch.value.type, this.formSearch.value.value).subscribe(data => {
+      console.log(data.clients)
       this.dataSource = data.clients;
       this.totalItems = data.totalItems;
     });
@@ -53,7 +54,7 @@ export class ScreenAdminComponent implements OnInit {
   }
 
   clear(){
-    this.leadService.getAllLeads(this.page, this.size).subscribe(data => {
+    this.leadService.getAllLeads(0, 5).subscribe(data => {
       this.dataSource = data.clients;
       this.totalItems = data.totalItems
     })

@@ -23,7 +23,19 @@ export class ScreenLeadsComponent implements OnInit {
     username: '',
     city: '',
     gender: ''
-  }
+  };
+
+  searchTypesGender = [
+    {id: 'Masculino', type: 'Masculino'},
+    {id: "Feminino", type: 'Feminino'},
+  ];
+
+  searchTypesCity = [
+    {id: 'Franca', type: 'Franca'},
+    {id: "Ribeirao", type: 'Ribeirao'},
+    {id: 'Batatais', type: 'Batatais'},
+    {id: "spaulo", type: 'São Paulo'},
+  ];
 
   constructor(
     private leadService: LeadService,
