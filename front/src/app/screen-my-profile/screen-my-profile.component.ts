@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token-storage.service';
-
 @Component({
   selector: 'app-screen-my-profile',
   templateUrl: './screen-my-profile.component.html',
@@ -13,6 +12,7 @@ export class ScreenMyProfileComponent implements OnInit {
     password: '',
     confirmPassword:'',
     dateCreatedUser: null,
+    createdAt: null,
     username: ''
   };
 
@@ -40,6 +40,12 @@ export class ScreenMyProfileComponent implements OnInit {
       this.myData.createdAt = data.createdAt
     })
   };
+
+
+  parseDate(str :any) {
+    var m = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    return (m) ? new Date(m[3], m[2]-1, m[1]) : null;
+  }
 
   reloadPage(): void {
     window.location.reload();
