@@ -47,7 +47,7 @@ module.exports = function (app) {
 
     app.put(
         "/api/auth/user/edit/:id",
-        [authJwt.verifyToken],
+        //[authJwt.verifyToken],
         controller.updateUser
     );
 

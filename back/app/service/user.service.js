@@ -42,8 +42,7 @@ async function deleteUser(id){
 
 //Editar um usuario
 async function updateUser(id, data){
-    console.log(data)
-    return user = await Users.update({
+    return userUpdate = await Users.update({
         username: data.username,
         email: data.email,
         password: bcrypt.hashSync(data.password, 8)
@@ -52,7 +51,7 @@ async function updateUser(id, data){
             id: id
         }
     })
-}
+};
 
 module.exports = {
     createUser,

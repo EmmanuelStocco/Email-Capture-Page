@@ -76,7 +76,7 @@ exports.deleteUser = (req, res) => {
     })
 };
 
-exports.updateUser = (req, res) => {
+exports.updateUser = (req, res) => { 
     user.userService.updateUser(req.params.id, req.body).then(user => {
         res.json(user);
     }).catch(err => {

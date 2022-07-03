@@ -3,6 +3,7 @@ const Leads = db.leads;
 const { getPagination, getPagingData } = require("../utils/functions");
 
 const createLead = async(data) => {
+    console.log(data)
    return leadCreated = await Leads.create({
         username: data.username,
         email: data.email,
@@ -27,6 +28,8 @@ const getAll = async(query) => {
 const getLeadByCity = async(city, query) => {
     const { page, size } = query;
     const { limit, offset } = getPagination(page, size);
+
+     
     const leadSearch = await Leads.findAndCountAll({
         limit,
         offset,
@@ -43,6 +46,9 @@ const getLeadByGender = async(sexo, query) => {
     const { page, size } = query;
     const { limit, offset } = getPagination(page, size);
     let genderForSearch
+    console.log('sexo')
+    console.log(sexo)
+    console.log('sexo')
     if(sexo == 'M'){
         genderForSearch = 'Masculino'
     }else{

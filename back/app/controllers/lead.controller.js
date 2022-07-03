@@ -37,9 +37,6 @@ exports.getLeadByCity = (req,res) => {
 }
 
 exports.getLeadByGender = (req,res) => {
-    console.log('req.params.sexo');
-    console.log(req.params.sexo);
-    console.log('req.params.sexo');
     services.leadService.getLeadByGender(req.params.sexo, req.query).then(leads => {
         res.json(leads);
     }).catch(err => {
